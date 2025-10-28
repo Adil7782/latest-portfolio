@@ -1,10 +1,11 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  eslint: {
-    ignoreDuringBuilds: true,
+  // Remove any custom webpack configs that mess with CSS
+  webpack: (config) => {
+    // ❌ Don't add MiniCssExtractPlugin manually here
+    return config
   },
-  images: { unoptimized: true },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
