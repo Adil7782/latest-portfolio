@@ -77,7 +77,7 @@ type Circle = {
   magnetism: number
 }
 
-export const Particles: React.FC<ParticlesProps> = ({
+export const  Particles: React.FC<ParticlesProps> = ({
   className = "",
   quantity = 100,
   staticity = 50,

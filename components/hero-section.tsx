@@ -67,7 +67,7 @@ export function HeroSection() {
           data-aos-delay="200"
           className="text-5xl md:text-7xl font-bold mb-4"
         >
-          Hi, I'm{' '}
+          Hi, I&apos;m
           <span className="text-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
             <ContainerTextFlip words={['Adil', 'Adil Saaly', 'Aadhi']} />
           </span>
@@ -75,7 +75,7 @@ export function HeroSection() {
 
         <div className="text-2xl md:text-4xl font-semibold text-muted-foreground mb-4"   data-aos="fade-up"
           data-aos-delay="300">
-          And I’m a
+          And I&apos;m a 
         </div>
 
         {/* Typing Animation */}
