@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader } from './ui/card';
 import { Briefcase, Calendar } from 'lucide-react';
+import { ParticlesBackground } from '@/components/ui/meshBackground';
 
 const experiences = [
   {
@@ -48,8 +49,11 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="experience" className="relative py-20 bg-secondary/30 overflow-hidden">
+      {/* Particles background */}
+      <div  className="absolute inset-0 -z-10"><ParticlesBackground /></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -71,7 +71,7 @@ const skillCategories = [
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 mt-10 pt-10">
        <div className="bg-background relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
        <div className="container mx-auto px-4">
         <motion.div
