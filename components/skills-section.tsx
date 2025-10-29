@@ -23,7 +23,6 @@ const skillCategories = [
       { name: 'Next.js', level: 90 },
       { name: 'TypeScript', level: 90 },
       { name: 'Tailwind CSS', level: 95 },
-      { name: 'Vue.js', level: 80 },
     ],
   },
   {
@@ -31,9 +30,7 @@ const skillCategories = [
     title: 'Backend',
     skills: [
       { name: 'Node.js', level: 90 },
-      { name: 'Python', level: 85 },
       { name: 'Express', level: 90 },
-      { name: 'FastAPI', level: 80 },
       { name: 'REST APIs', level: 95 },
     ],
   },
@@ -41,34 +38,24 @@ const skillCategories = [
     icon: Database,
     title: 'Database',
     skills: [
+      { name: 'Prisma', level: 85 },
       { name: 'PostgreSQL', level: 85 },
       { name: 'MongoDB', level: 80 },
-      { name: 'Redis', level: 75 },
-      { name: 'Supabase', level: 85 },
-      { name: 'Prisma', level: 80 },
+      { name: 'Supabase', level: 75 },
     ],
   },
   {
     icon: Cloud,
     title: 'DevOps & Cloud',
     skills: [
-      { name: 'AWS', level: 80 },
-      { name: 'Docker', level: 85 },
-      { name: 'CI/CD', level: 85 },
       { name: 'Vercel', level: 90 },
-      { name: 'Linux', level: 80 },
+      { name: 'AWS', level: 85 },
+      { name: 'CI/CD', level: 85 },
+      { name: 'Docker', level: 85 },
+
     ],
   },
-  {
-    icon: Smartphone,
-    title: 'Mobile',
-    skills: [
-      { name: 'React Native', level: 85 },
-      { name: 'Expo', level: 80 },
-      { name: 'PWA', level: 85 },
-      { name: 'Responsive Design', level: 95 },
-    ],
-  },
+
   {
     icon: Wrench,
     title: 'Tools',
@@ -77,7 +64,7 @@ const skillCategories = [
       { name: 'VS Code', level: 95 },
       { name: 'Figma', level: 80 },
       { name: 'Postman', level: 90 },
-      { name: 'Jest', level: 85 },
+
     ],
   },
 ];

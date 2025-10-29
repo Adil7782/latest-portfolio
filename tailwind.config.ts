@@ -58,8 +58,8 @@ const config: Config = {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',
           '3': 'hsl(var(--chart-3))',
-          '4_': 'hsl(var(--chart-4))', // Note: I changed '4' to '4_' as '4' is not a valid key. You may need to adjust this.
-          '5_': 'hsl(var(--chart-5))', // Note: I changed '5' to '5_' as '5' is not a valid key. You may need to adjust this.
+          '4_': 'hsl(var(--chart-4))',
+          '5_': 'hsl(var(--chart-5))',
         },
       },
       keyframes: {
@@ -79,23 +79,23 @@ const config: Config = {
             height: '0',
           },
         },
-        // <-- ADD THIS BLOCK
+        // CORRECTED RIPPLE ANIMATION
         ripple: {
-          '0%, 100%': {
-            transform: 'translate(-50%, -50%) scale(1)',
+          '0%': {
+            transform: 'translate(-50%, -50%) scale(0.8)',
+            opacity: '1',
           },
-          '50%': {
-            transform: 'translate(-50%, -50%) scale(0.9)',
+          '100%': {
+            transform: 'translate(-50%, -50%) scale(2.5)',
+            opacity: '0',
           },
         },
-        // -->
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        // <-- ADD THIS LINE
-        ripple: 'ripple 2s ease infinite',
-        // -->
+        // CORRECTED RIPPLE ANIMATION TIMING
+        ripple: 'ripple 3.5s ease-out infinite',
       },
     },
   },
