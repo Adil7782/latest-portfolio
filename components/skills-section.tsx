@@ -12,6 +12,7 @@ import {
   GitBranch,
   Wrench,
 } from 'lucide-react';
+import { Ripple } from './ui/ripple';
 
 const skillCategories = [
   {
@@ -84,7 +85,8 @@ const skillCategories = [
 export function SkillsSection() {
   return (
     <section id="skills" className="py-20">
-      <div className="container mx-auto px-4">
+       <div className="bg-background relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg border">
+       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -143,6 +145,9 @@ export function SkillsSection() {
           ))}
         </div>
       </div>
+      <Ripple numCircles={8} />
+    </div>
+     
     </section>
   );
 }

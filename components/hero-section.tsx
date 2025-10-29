@@ -13,16 +13,25 @@ import { useTheme } from 'next-themes';
 import { DockDemo } from './mockDock';
 import { ShinyButton } from "@/components/ui/shiny-button"
 import { InteractiveHoverButton } from './ui/interactive-hover-button';
+import { HoverBorderGradient } from './ui/hover-border-gradient';
+import { CometCardDemo } from './hero-image';
+
 export function HeroSection() {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' });
+    setMounted(true);
   }, []);
 
-    const { resolvedTheme } = useTheme()
-  const [color, setColor] = useState("#ffffff")
+  const { resolvedTheme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
+
   useEffect(() => {
-    setColor(resolvedTheme === "light" ? "#000000" : "#000000ffffff")
-  }, [resolvedTheme])
+    if (mounted) {
+      setColor(resolvedTheme === "light" ? "#000000" : "#ffffff");
+    }
+  }, [mounted, resolvedTheme]);
 
 
   return (
@@ -30,52 +39,37 @@ export function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-background to-cyan-50 dark:from-background dark:via-blue-950/20 dark:to-background"
     >
-      {/* 🔹 Fullscreen Particles Background */}
-       <Particles
+      <Particles
         className="absolute inset-0 z-0"
         quantity={100}
         ease={80}
         color={color}
         refresh
       />
-
-      {/* 🔹 Subtle Grid Overlay */}
       <div className="absolute inset-0 bg-grid-white/[0.05] dark:bg-grid-black/[0.05] -z-10" />
-
-      {/* 🔹 Main Content */}
       <div className="container mx-auto px-4 relative z-10 text-center">
         {/* Profile Picture */}
         <div data-aos="zoom-in" className="mb-6">
-          <div className="relative w-64 h-64 mx-auto">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 via-sky-400 to-cyan-400 p-[3px] shadow-lg shadow-blue-500/30 animate-pulse">
-              <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 overflow-hidden">
-                <Image
-                  src="/adil.jpg"
-                  alt="Profile picture"
-                  width={256}
-                  height={256}
-                  className="object-cover w-full h-full rounded-full transition-transform duration-700 hover:scale-110"
-                />
-              </div>
-            </div>
+          <div className="relative w-72 h-7w-72 mx-auto">
+            <CometCardDemo/>
           </div>
         </div>
 
         {/* Name */}
-        <h1
-          data-aos="fade-up"
-          data-aos-delay="200"
-          className="text-5xl md:text-7xl font-bold mb-4"
-        >
-          Hi, I&apos;m
-          <span className="text-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-            <ContainerTextFlip words={['Adil', 'Adil Saaly', 'Aadhi']} />
-          </span>
-        </h1>
-
-        <div className="text-2xl md:text-4xl font-semibold text-muted-foreground mb-4"   data-aos="fade-up"
-          data-aos-delay="300">
-          And I&apos;m a 
+        <div className="flex items-center justify-center gap-24">
+          <h1
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="text-5xl md:text-7xl font-bold mb-4 flex items-center gap-4"
+          >
+            <span>Hi, I&apos;m</span>
+            <span className="text-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+              {/* 🔹 FIX 1: Wrapped client component in mounted check */}
+              {mounted && (
+                <ContainerTextFlip words={[ 'Adil Saaly','Adil', 'Aadhi']} />
+              )}
+            </span>
+          </h1>
         </div>
 
         {/* Typing Animation */}
@@ -84,32 +78,31 @@ export function HeroSection() {
           data-aos-delay="400"
           className="text-2xl md:text-4xl font-semibold mb-8 text-muted-foreground h-20"
         >
-          <TypeAnimation
-            sequence={[
-              'Full Stack Developer',
-              2000,
-              'Content Creator',
-              2000,
-              'Trilingual Speaker',
-              2000,
-              'Student of SLIATE',
-              2000,
-            ]}
-            wrapper="span"
-            speed={50}
-            repeat={Infinity}
-          />
+          {mounted && (
+            <TypeAnimation
+              sequence={[
+                'Full Stack Developer', 2000,
+                'Content Creator', 2000,
+                'Trilingual Speaker', 2000,
+                'Student of SLIATE', 2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+            />
+          )}
         </div>
 
         {/* Subtitle */}
-        <p
+        {/* 🔹 FIX 2: Changed <p> to <div> to prevent nesting errors */}
+        <div
           data-aos="fade-up"
           data-aos-delay="600"
           className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
         >
           Crafting modern, responsive, and user-friendly web applications using the latest technologies.
-          I’m passionate about clean code, smart design, and delivering seamless user experiences.
-        </p>
+          I&apos;m passionate about clean code, smart design, and delivering seamless user experiences.
+        </div>
 
         {/* Buttons */}
         <div
@@ -117,28 +110,25 @@ export function HeroSection() {
           data-aos-delay="800"
           className="flex flex-wrap gap-4 justify-center mb-12"
         >
-          <ShinyButton className='w-44' onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
-              View My Work
-          </ShinyButton>
-          
-          <InteractiveHoverButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Get In Touch</InteractiveHoverButton>
-      
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <span>View My Work</span>
+          </HoverBorderGradient>
+          <InteractiveHoverButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            Get In Touch
+          </InteractiveHoverButton>
         </div>
 
+        <div className=""></div>
 
-
-<div className="">
-
-</div>
-
-<div className="" data-aos="fade-up"
-          data-aos-delay="1000">
-  <DockDemo/>
-</div>
-
-        {/* Social Links */}
-       
-
+        <div className="" data-aos="fade-up" data-aos-delay="1000">
+          {mounted && <DockDemo/>}
+        </div>
+        
         {/* Floating Arrow */}
         <div
           data-aos="fade-up"

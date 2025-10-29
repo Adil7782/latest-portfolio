@@ -10,7 +10,7 @@ import { Footer } from '@/components/footer';
 export default function Home() {
   console.log("first")
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-hidden">
       <Navbar />
       <HeroSection />
       <AboutSection />

@@ -5,6 +5,7 @@ import { ThemeToggle } from './theme-toggle';
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -42,7 +43,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <a href="#home" className="text-2xl font-bold text-gradient">
-            Adil.Dev
+           <Image src="/logo.png" alt='' height={120} width={240} />
           </a>
 
           <div className="hidden md:flex items-center gap-8">
