@@ -37,7 +37,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-background to-cyan-50 dark:from-background dark:via-blue-950/20 dark:to-background"
+      className="relative min-h-screen flex items-center justify-center mt-12 overflow-hidden bg-gradient-to-br from-blue-50 via-background to-cyan-50 dark:from-background dark:via-blue-950/20 dark:to-background"
     >
       <Particles
         className="absolute inset-0 z-0"
