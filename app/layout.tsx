@@ -88,9 +88,9 @@ export default function RootLayout({
               name: 'Adil Saaly',
               url: 'https://adil-saaly.vercel.app',
               sameAs: [
-                'https://github.com/adilsaaly',
-                'https://linkedin.com/in/adilsaaly',
-                'https://twitter.com/adilsaaly',
+                'https://github.com/Adil7782',
+                'https://www.linkedin.com/in/adil-saaly-dev',
+                'https://web.facebook.com/adil.saaly',
               ],
               jobTitle: 'Full Stack Developer',
               worksFor: {
