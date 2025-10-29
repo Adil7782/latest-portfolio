@@ -7,52 +7,43 @@ import { Briefcase, Calendar } from 'lucide-react';
 const experiences = [
   {
     title: 'Senior Full Stack Developer',
-    company: 'Tech Innovations Inc.',
-    period: '2022 - Present',
+    company: 'Emmanuels Lanka pvt Ltd.',
+    period: 'Present',
     description:
-      'Leading development of cloud-based SaaS platform serving 50K+ users. Architected microservices infrastructure and mentored junior developers.',
+      'A leading company of IT and IoT Solutions. Handling multiple projects and mentored junior developers.',
     achievements: [
-      'Reduced page load times by 60% through optimization',
+      'Automated reports generation',
       'Implemented CI/CD pipeline reducing deployment time by 80%',
-      'Led team of 5 developers on major feature releases',
+      'Task Tracker System to track the efficiency of developers',
+      'Led team of 3 developers on major feature releases',
     ],
   },
   {
-    title: 'Full Stack Developer',
-    company: 'Digital Solutions Co.',
-    period: '2020 - 2022',
-    description:
-      'Developed customer-facing web applications using React and Node.js. Collaborated with design team to implement responsive UI components.',
-    achievements: [
-      'Built RESTful APIs handling 1M+ daily requests',
-      'Improved test coverage from 40% to 90%',
-      'Integrated third-party payment systems',
-    ],
-  },
-  {
-    title: 'Frontend Developer',
-    company: 'StartupHub',
-    period: '2019 - 2020',
-    description:
-      'Created interactive user interfaces for startup products. Worked closely with product managers to translate requirements into features.',
-    achievements: [
-      'Developed reusable component library used across 5 projects',
-      'Implemented responsive designs for mobile-first approach',
-      'Contributed to open-source UI framework',
-    ],
-  },
-  {
-    title: 'Junior Developer',
-    company: 'WebDev Agency',
-    period: '2018 - 2019',
-    description:
-      'Started career building WordPress sites and custom web applications. Learned modern JavaScript frameworks and best practices.',
-    achievements: [
-      'Delivered 20+ client websites on time and within budget',
-      'Achieved 95% client satisfaction rating',
-      'Learned React, Vue.js, and modern development tools',
-    ],
-  },
+  title: 'Full Stack Developer Intern',
+  company: 'Emmanuels Lanka pvt Ltd',
+  period: '2024 - 2025',
+  description:
+    'Contributed to the development of the ELIoT Portal and ELIoT RFID Portal under the guidance of the Senior Engineer.',
+  achievements: [
+    'Developed multiple user analytics dashboards and performance reports.',
+    'Successfully managed increased workload and responsibilities after the Senior Engineer`s departure.',
+    'Led and maintained multiple projects hosted on AWS.',
+  ],
+},
+ {
+  title: 'Student of SLIATE - HNDIT Programme',
+  company: 'SLIATE',
+  period: '2022 - 2024',
+  description:
+    'Completed the Higher National Diploma in Information Technology (HNDIT) with a strong academic performance and practical project experience.',
+  achievements: [
+    'Successfully completed the full HNDIT program.',
+    'Completed the final viva examination.',
+    'Achieved a high GPA qualifying for First Class recognition.',
+  ],
+}
+,
+
 ];
 
 export function ExperienceSection() {
