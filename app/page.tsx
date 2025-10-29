@@ -6,6 +6,7 @@ import { ExperienceSection } from '@/components/experience-section';
 import { SkillsSection } from '@/components/skills-section';
 import { ContactSection } from '@/components/contact-section';
 import { Footer } from '@/components/footer';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
 
 export default function Home() {
   console.log("first")

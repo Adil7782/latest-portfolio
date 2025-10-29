@@ -111,3 +111,7 @@
 .animate-ripple {
   animation: ripple 3.5s ease-out infinite;
 }
+
+html {
+  scroll-behavior: smooth;
+}

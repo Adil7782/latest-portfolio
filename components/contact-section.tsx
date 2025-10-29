@@ -8,6 +8,8 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Github, Linkedin, Mail, Twitter, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { DockDemo } from './mockDock';
+import { FaMobile } from 'react-icons/fa';
 
 const socialLinks = [
   {
@@ -170,44 +172,22 @@ export function ContactSection() {
               <div className="space-y-4">
                 <div className="flex items-center gap-3 text-muted-foreground">
                   <Mail className="h-5 w-5 text-primary" />
-                  <span>john@example.com</span>
+                  <span>adilsaaly@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-muted-foreground">
                   <span className="text-primary">📍</span>
-                  <span>San Francisco, CA</span>
+                  <span>Kurunegala , Sri Lanka</span>
+                </div>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <span className="text-primary"><FaMobile/></span>
+                  <span>+94 78 357 3226</span>
                 </div>
               </div>
             </div>
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Follow Me</h4>
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      asChild
-                      className="hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                      >
-                        <social.icon className="h-5 w-5" />
-                      </a>
-                    </Button>
-                  </motion.div>
-                ))}
-              </div>
+              <DockDemo/>
             </div>
 
             <Card className="bg-gradient-to-br from-blue-500/10 to-cyan-400/10 border-primary/20">

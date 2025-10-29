@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { ScrollProgress } from './ui/scroll-progress';
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -40,6 +41,8 @@ export function Navbar() {
           : 'bg-transparent'
       }`}
     >
+             <ScrollProgress className="top-[85px]" />
+      
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <a href="#home" className="text-2xl font-bold text-gradient">
