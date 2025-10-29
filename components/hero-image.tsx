@@ -3,31 +3,16 @@ import { CometCard } from "@/components/ui/comet-card";
 export function CometCardDemo() {
   return (
     <CometCard>
-      <button
-        type="button"
-        className="my-10 flex w-80 cursor-pointer flex-col items-stretch rounded-full border-0 bg-[#1F2121] p-2 md:my-20 md:p-4"
-        aria-label="View invite F7RA"
-        style={{
-          transformStyle: "preserve-3d",
-          transform: "none",
-          opacity: 1,
-        }}
-      >
-        <div className="mx-2 flex-1">
-          <div className="relative mt-2 aspect-square p-24 w-full">
-            <img
-              loading="lazy"
-              className="absolute inset-0 h-full w-full rounded-full bg-[#000000] object-cover"
-              alt="Invite background"
-              src="/adil.jpg"
-              style={{
-                boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                opacity: 1,
-              }}
-            />
-          </div>
+      <div className="flex justify-center items-center py-10">
+        {/* Circle image */}
+        <div className="relative w-48 h-48 md:w-64 md:h-64">
+          <img
+            src="/adil.jpg"
+            alt="Invite background"
+            className="rounded-full object-cover w-full h-full shadow-lg"
+          />
         </div>
-      </button>
+      </div>
     </CometCard>
   );
 }

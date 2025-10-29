@@ -8,6 +8,7 @@ import { ContactSection } from '@/components/contact-section';
 import { Footer } from '@/components/footer';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
 import { ParticlesBackground } from '@/components/ui/meshBackground';
+import TerminalCompo from '@/components/terminal';
 
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
       <AboutSection />
       <ProjectsSection />
       <ExperienceSection />
- 
+      <TerminalCompo/>
 
       <SkillsSection />
       <ContactSection />

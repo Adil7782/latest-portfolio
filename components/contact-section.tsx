@@ -10,6 +10,7 @@ import { Github, Linkedin, Mail, Twitter, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { DockDemo } from './mockDock';
 import { FaMobile } from 'react-icons/fa';
+import { Iphone } from './ui/iphone';
 
 const socialLinks = [
   {
@@ -84,7 +85,7 @@ export function ContactSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -153,8 +154,11 @@ export function ContactSection() {
                 </form>
               </CardContent>
             </Card>
-          </motion.div>
+          </motion.div> */}
 
+            <div className="w-[304px]">
+      <Iphone src="/adil2.jpg" />
+    </div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
