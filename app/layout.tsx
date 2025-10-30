@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Adil Saaly', url: 'https://adil-saaly.vercel.app/' }],
   creator: 'Adil Saaly',
+  manifest: '/site.webmanifest',
   publisher: 'Adil Saaly',
   metadataBase: new URL('https://adil-saaly.vercel.app'),
   alternates: {
