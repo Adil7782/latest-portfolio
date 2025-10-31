@@ -8,9 +8,11 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   
-  safelist: [
-    'animate-ripple',
-  ],
+ safelist: [
+  'animate-ripple',
+  'animate-marquee',
+  'animate-marquee-vertical',
+],
   theme: {
     extend: {
       backgroundImage: {
