@@ -7,7 +7,7 @@ import { ParticlesBackground } from '@/components/ui/meshBackground';
 
 const experiences = [
   {
-    title: 'Senior Full Stack Developer',
+    title: 'Software Engineer',
     company: 'Emmanuels Lanka pvt Ltd.',
     period: 'Present',
     description:
@@ -20,7 +20,7 @@ const experiences = [
     ],
   },
   {
-  title: 'Full Stack Developer Intern',
+  title: 'Associate Software Engineer',
   company: 'Emmanuels Lanka pvt Ltd',
   period: '2024 - 2025',
   description:
@@ -29,6 +29,18 @@ const experiences = [
     'Developed multiple user analytics dashboards and performance reports.',
     'Successfully managed increased workload and responsibilities after the Senior Engineer`s departure.',
     'Led and maintained multiple projects hosted on AWS.',
+  ],
+},
+ {
+  title: 'Software Engineering Intern',
+  company: 'CeyInfo Solutions pvt Ltd',
+  period: '2024 ',
+  description:
+    'Contributed to the development of a Hotel ERP (Enterprise Resource Planning) system, focusing on modules for guest management, bookings, and inventory control.',
+  achievements: [
+    'Strengthened proficiency in JavaScript, TypeScript, PostgreSQL, and Next.js through project-based work.',
+    'Contributed to real-world applications, gaining practical experience in full-stack development and modern web workflows.',
+    'Gained exposure to the entire application lifecycle, from database design (PostgreSQL) to frontend development',
   ],
 },
  {

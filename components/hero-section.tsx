@@ -81,10 +81,11 @@ export function HeroSection() {
           {mounted && (
             <TypeAnimation
               sequence={[
-                'Full Stack Developer', 2000,
+                'Software Engineer', 2000,
+                'Student of SLIATE', 2000,
                 'Content Creator', 2000,
                 'Trilingual Speaker', 2000,
-                'Student of SLIATE', 2000,
+                'Full Stack Developer', 2000,
               ]}
               wrapper="span"
               speed={50}
@@ -118,9 +119,17 @@ export function HeroSection() {
           >
             <span>View My Work</span>
           </HoverBorderGradient>
-          <InteractiveHoverButton onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-            Get In Touch
-          </InteractiveHoverButton>
+          <a 
+        
+  href="/myCV.pdf" // Path to your PDF in the /public folder
+  download="Adil-Saaly-Resume.pdf" // The suggested filename for the user
+          >
+
+          
+          <HoverBorderGradient>
+            Get My CV
+   </HoverBorderGradient>
+          </a>
         </div>
 
         <div className=""></div>

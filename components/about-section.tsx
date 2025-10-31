@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { Code2, Briefcase, GraduationCap, Award } from 'lucide-react';
+import { Marquee3D,  } from './marqueeSection';
 
 const highlights = [
   {
@@ -19,7 +20,7 @@ const highlights = [
   {
     icon: GraduationCap,
     title: 'HNDIT',
-    description: 'Highe National Diploma in Information Technology',
+    description: 'Higher National Diploma in Information Technology',
   },
 
 ];
@@ -133,6 +134,9 @@ export function AboutSection() {
             ))}
           </div>
         </motion.div>
+      </div>
+      <div className="">
+        <Marquee3D/>
       </div>
     </section>
   );
