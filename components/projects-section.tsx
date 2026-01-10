@@ -11,6 +11,15 @@ import { cn } from '@/lib/utils'
 
 const projects = [
   {
+    title: 'POS System',
+    description:
+      'A Point of Sale System for a retail store with user authentication and real-time collaboration.',
+    image: '/pos.png',
+    technologies: ['NextJs', 'JWT', 'Prisma', 'Tailwind'],
+    github: 'https://github.com',
+    demo: 'https://retail-pos-xi.vercel.app/pos/',
+  },
+  {
     title: 'Task Tracker',
     description:
       'A task management app with user authentication, project organization, and real-time collaboration.',
@@ -105,8 +114,8 @@ export function ProjectsSection() {
                   <div>
                     <CardItem
                       translateZ="100"
-                    rotateX={20}
-                    rotateZ={-10}
+                      rotateX={20}
+                      rotateZ={-10}
                       className="w-full relative h-48 rounded-xl overflow-hidden"
                     >
                       <Image
