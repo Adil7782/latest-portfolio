@@ -80,9 +80,11 @@ export function ContactSection() {
             Get In <span className="text-gradient">Touch</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+
             Have a project in mind or just want to chat? Feel free to reach out!
           </p>
         </motion.div>
+
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* <motion.div
@@ -156,9 +158,9 @@ export function ContactSection() {
             </Card>
           </motion.div> */}
 
-            <div className="w-[304px]">
-      <Iphone src="/adil2.jpg" />
-    </div>
+          <div className="w-[304px]">
+            <Iphone src="/footer.jpeg" />
+          </div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -183,7 +185,7 @@ export function ContactSection() {
                   <span>Kurunegala , Sri Lanka</span>
                 </div>
                 <div className="flex items-center gap-3 text-muted-foreground">
-                  <span className="text-primary"><FaMobile/></span>
+                  <span className="text-primary"><FaMobile /></span>
                   <span>+94 78 357 3226</span>
                 </div>
               </div>
@@ -191,7 +193,7 @@ export function ContactSection() {
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Follow Me</h4>
-              <DockDemo/>
+              <DockDemo />
             </div>
 
             <Card className="bg-gradient-to-br from-blue-500/10 to-cyan-400/10 border-primary/20">

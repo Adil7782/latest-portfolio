@@ -20,6 +20,14 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: 'Secure Proxy Tunnel',
+    image: '/3x.png',
+
+    description:
+      'Educational project: deployed an Xray proxy tunnel on a Linux VPS via the 3X-UI panel, with custom ports, client routing and SSL.',
+    technologies: ['Linux VPS', 'Xray', '3X-UI', 'SSL/TLS'],
+  },
+  {
     title: 'POS System',
     description:
       'A Point of Sale System for a retail store with user authentication and real-time collaboration.',
@@ -62,12 +70,7 @@ const projects: Project[] = [
     technologies: ['Next.js', 'TypeScript', 'Resend mail', 'Tailwind CSS'],
     demo: 'https://www.gamlathecoholding.lk/',
   },
-  {
-    title: 'Secure Proxy Tunnel',
-    description:
-      'Educational project: deployed an Xray proxy tunnel on a Linux VPS via the 3X-UI panel, with custom ports, client routing and SSL.',
-    technologies: ['Linux VPS', 'Xray', '3X-UI', 'SSL/TLS'],
-  },
+
 ]
 
 export function ProjectsSection() {
@@ -154,7 +157,7 @@ export function ProjectsSection() {
                       {project.description}
                     </CardItem>
 
-                    <CardItem
+                    {/* <CardItem
                       translateZ="30"
                       className="flex flex-wrap gap-2 mt-4"
                     >
@@ -163,11 +166,11 @@ export function ProjectsSection() {
                           {tech}
                         </Badge>
                       ))}
-                    </CardItem>
+                    </CardItem> */}
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex justify-end items-center mt-4 gap-2">
+                  {/* <div className="flex justify-end items-center mt-4 gap-2">
                     {project.github && (
                       <CardItem
                         translateZ={20}
@@ -188,20 +191,20 @@ export function ProjectsSection() {
                     )}
 
                     {project.demo && (
-                    <CardItem
-                      translateZ={20}
-                      as="a"
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button size="sm" className="flex items-center gap-2">
-                        <ExternalLink className="h-4 w-4" />
-                        Demo
-                      </Button>
-                    </CardItem>
+                      <CardItem
+                        translateZ={20}
+                        as="a"
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button size="sm" className="flex items-center gap-2">
+                          <ExternalLink className="h-4 w-4" />
+                          Demo
+                        </Button>
+                      </CardItem>
                     )}
-                  </div>
+                  </div> */}
                 </CardBody>
               </CardContainer>
             </motion.div>

@@ -28,6 +28,7 @@ import {
 import { Safari } from '@/components/ui/safari';
 import { Iphone } from '@/components/ui/iphone';
 import { cn } from '@/lib/utils';
+import { HyperText } from './ui/hyper-text';
 
 type FlowNode = { icon: LucideIcon; label: string };
 
@@ -57,7 +58,7 @@ type CompanyProject = {
 const companyProjects: CompanyProject[] = [
   {
     slug: 'vantage-scada',
-    title: 'Vantage AI SCADA',
+    title: 'Vantage AI  ',
     url: 'https://vantageai.eliot.global/',
     device: 'browser',
     type: 'Industrial IoT · Real-Time Solar Plant Monitoring',
@@ -444,12 +445,13 @@ export function CompanyProjectsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs font-medium text-muted-foreground mb-4">
+          <span className="inline-flex items-center gap-2  px-4 py-1 text-xs font-medium text-muted-foreground mb-4">
             <Building2 className="h-3.5 w-3.5" />
             Built at Emmanuels Lanka
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            Company Contributed Projects
+            Company Contributed  <span className="text-gradient">Projects
+            </span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Production systems for industrial IoT and garment manufacturing that I helped design, build and ship
@@ -474,20 +476,21 @@ export function CompanyProjectsSection() {
                 <div className="flex items-center gap-3 mb-3">
                   <span
                     className={cn(
-                      'flex h-8 w-8 items-center justify-center rounded-lg text-xs font-mono font-semibold border',
-                      project.accent.border,
-                      project.accent.bg,
-                      project.accent.text
+                      'text-gradient',
                     )}
                   >
                     0{index + 1}
                   </span>
-                  <span className={cn('text-xs font-semibold uppercase tracking-wider', project.accent.text)}>
+                  <span className="text-gradient">
                     {project.type}
                   </span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold mb-1">{project.title}</h3>
+                <h3 className="text-2xl md:text-3xl font-bold mb-1">
+                  <HyperText className="text-6xl text-white-500" startOnView={true} delay={0.2}>
+                    {project.title}
+
+                  </HyperText></h3>
                 <p className="flex items-center gap-1.5 text-sm text-muted-foreground mb-4">
                   <Cpu className="h-3.5 w-3.5" />
                   {project.stakeholders}
@@ -508,10 +511,14 @@ export function CompanyProjectsSection() {
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
+
                       key={tag}
-                      className={cn('rounded-full border px-3 py-1 text-xs font-medium', project.accent.border, project.accent.bg)}
+                    // className={cn('  px-3 py-1 text-xs font-medium', project.accent.border, project.accent.bg)}
                     >
-                      {tag}
+                      <HyperText className="text-lg text-gray-500" startOnView={true} delay={0.2}>
+                        {"-" + tag + "-"}
+
+                      </HyperText>
                     </span>
                   ))}
                 </div>
