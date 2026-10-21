@@ -18,14 +18,14 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden">
       <Navbar />
-      <HeroSection />
+      {/* <HeroSection /> */}
       {/* Editorial Hero Layout (Arda Güler Poster Style) */}
       <EditorialHeroSection />
       <AboutSection />
       <CompanyProjectsSection />
       <ProjectsSection />
       <ExperienceSection />
-      <TerminalCompo/>
+      <TerminalCompo />
 
       <SkillsSection />
       <ContactSection />

@@ -6,6 +6,7 @@ import {
   Facebook,
   Github,
   HomeIcon,
+  Instagram,
   Linkedin,
   MailIcon,
   PencilIcon,
@@ -84,6 +85,11 @@ const DATA = {
         name: "Facebook",
         url: "https://web.facebook.com/adil.saaly",
         icon: Facebook,
+      },
+      Instagram: {
+        name: "Instagram",
+        url: "https://www.instagram.com/its_me_aadhi_dev/",
+        icon: Instagram,
       },
       Whatsapp: {
         name: "Whatsapp",

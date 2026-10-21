@@ -159,7 +159,7 @@ export function ContactSection() {
           </motion.div> */}
 
           <div className="w-[304px]">
-            <Iphone src="/footer.jpeg" />
+            <Iphone src="/adil-new.jpeg" />
           </div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
