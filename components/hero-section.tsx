@@ -132,8 +132,8 @@ export function HeroSection() {
           </HoverBorderGradient>
           <a
 
-            href="/Adil-Saaly-Resume.pdf" // Path to your PDF in the /public folder
-            download="Adil-Saaly-Resume.pdf" // The suggested filename for the user
+            href="/adil-cv.pdf" // Path to your PDF in the /public folder
+            download="adil-cv.pdf" // The suggested filename for the user
           >
 
 
