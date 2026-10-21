@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/navbar';
 import { HeroSection } from '@/components/hero-section';
+import { EditorialHeroSection } from '@/components/editorial-hero-section';
 import { AboutSection } from '@/components/about-section';
 import { ProjectsSection } from '@/components/projects-section';
 import { CompanyProjectsSection } from '@/components/company-projects-section';
@@ -18,6 +19,8 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden">
       <Navbar />
       <HeroSection />
+      {/* Editorial Hero Layout (Arda Güler Poster Style) */}
+      <EditorialHeroSection />
       <AboutSection />
       <CompanyProjectsSection />
       <ProjectsSection />

@@ -4,15 +4,11 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { TypeAnimation } from 'react-type-animation';
-import { Button } from './ui/button';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowDown } from 'lucide-react';
 import { ContainerTextFlip } from './ui/container-text-flip';
 import { Particles } from './ui/particles';
 import { useTheme } from 'next-themes';
 import { DockDemo } from './mockDock';
-import { ShinyButton } from "@/components/ui/shiny-button"
-import { InteractiveHoverButton } from './ui/interactive-hover-button';
 import { HoverBorderGradient } from './ui/hover-border-gradient';
 import { CometCardDemo } from './hero-image';
 
@@ -25,14 +21,13 @@ export function HeroSection() {
   }, []);
 
   const { resolvedTheme } = useTheme();
-  const [color, setColor] = useState("#ffffff");
+  const [color, setColor] = useState('#ffffff');
 
   useEffect(() => {
     if (mounted) {
-      setColor(resolvedTheme === "light" ? "#000000" : "#ffffff");
+      setColor(resolvedTheme === 'light' ? '#000000' : '#ffffff');
     }
   }, [mounted, resolvedTheme]);
-
 
   return (
     <section
@@ -64,7 +59,6 @@ export function HeroSection() {
           >
             <span>Hi, I&apos;m</span>
             <span className="text-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              {/* 🔹 FIX 1: Wrapped client component in mounted check */}
               {mounted && (
                 <ContainerTextFlip words={['Adil Saaly', 'Adil', 'Aadhi']} />
               )}
@@ -80,33 +74,31 @@ export function HeroSection() {
         >
           {mounted && (
             <>
-              <div>
-                And I'm a
-
-              </div>
+              <div>And I&apos;m a</div>
               <TypeAnimation
                 sequence={[
-                  'Software Engineer', 2000,
-                  'HNDIT Graduate', 2000,
-                  'BIT Undergraduate @ UoM', 2000,
-                  'Content Creator', 2000,
-                  'Trilingual Speaker', 2000,
-                  'CI/CD Pipelines Developer', 2000,
-
-                  // 'Full Stack Developer', 2000,
+                  'Software Engineer',
+                  2000,
+                  'HNDIT Graduate',
+                  2000,
+                  'BIT Undergraduate @ UoM',
+                  2000,
+                  'Content Creator',
+                  2000,
+                  'Trilingual Speaker',
+                  2000,
+                  'CI/CD Pipelines Developer',
+                  2000,
                 ]}
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
               />
-
             </>
-
           )}
         </div>
 
         {/* Subtitle */}
-        {/* 🔹 FIX 2: Changed <p> to <div> to prevent nesting errors */}
         <div
           data-aos="fade-up"
           data-aos-delay="600"
@@ -131,21 +123,16 @@ export function HeroSection() {
             <span>View My Work</span>
           </HoverBorderGradient>
           <a
-
-            href="/adil-cv.pdf" // Path to your PDF in the /public folder
-            download="adil-cv.pdf" // The suggested filename for the user
+            href="/adil-cv.pdf"
+            download="adil-cv.pdf"
           >
-
-
             <HoverBorderGradient>
               Get My CV
             </HoverBorderGradient>
           </a>
         </div>
 
-        <div className=""></div>
-
-        <div className="" data-aos="fade-up" data-aos-delay="1000">
+        <div data-aos="fade-up" data-aos-delay="1000">
           {mounted && <DockDemo />}
         </div>
 
