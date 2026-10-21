@@ -48,7 +48,7 @@ export function EditorialHeroSection() {
   return (
     <section
       ref={sectionRef}
-      id="editorial-hero"
+      id="home"
       className="relative min-h-[92vh] lg:min-h-screen w-full flex flex-col justify-between overflow-hidden bg-background text-foreground pt-14 pb-8 px-4 sm:px-8 select-none border-t border-border/50"
     >
 
