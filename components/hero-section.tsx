@@ -51,7 +51,7 @@ export function HeroSection() {
         {/* Profile Picture */}
         <div data-aos="zoom-in" className="mb-6">
           <div className="relative w-72 h-7w-72 mx-auto">
-            <CometCardDemo/>
+            <CometCardDemo />
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export function HeroSection() {
             <span className="text-gradient bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
               {/* 🔹 FIX 1: Wrapped client component in mounted check */}
               {mounted && (
-                <ContainerTextFlip words={[ 'Adil Saaly','Adil', 'Aadhi']} />
+                <ContainerTextFlip words={['Adil Saaly', 'Adil', 'Aadhi']} />
               )}
             </span>
           </h1>
@@ -79,18 +79,29 @@ export function HeroSection() {
           className="text-2xl md:text-4xl font-semibold mb-8 text-muted-foreground h-20"
         >
           {mounted && (
-            <TypeAnimation
-              sequence={[
-                'Software Engineer', 2000,
-                'Student of SLIATE', 2000,
-                'Content Creator', 2000,
-                'Trilingual Speaker', 2000,
-                'Full Stack Developer', 2000,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
+            <>
+              <div>
+                And I'm a
+
+              </div>
+              <TypeAnimation
+                sequence={[
+                  'Software Engineer', 2000,
+                  'HNDIT Graduate', 2000,
+                  'BIT Undergraduate @ UoM', 2000,
+                  'Content Creator', 2000,
+                  'Trilingual Speaker', 2000,
+                  'CI/CD Pipelines Developer', 2000,
+
+                  // 'Full Stack Developer', 2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+              />
+
+            </>
+
           )}
         </div>
 
@@ -119,25 +130,25 @@ export function HeroSection() {
           >
             <span>View My Work</span>
           </HoverBorderGradient>
-          <a 
-        
-  href="/Adil-Saaly-Resume.pdf" // Path to your PDF in the /public folder
-  download="Adil-Saaly-Resume.pdf" // The suggested filename for the user
+          <a
+
+            href="/Adil-Saaly-Resume.pdf" // Path to your PDF in the /public folder
+            download="Adil-Saaly-Resume.pdf" // The suggested filename for the user
           >
 
-          
-          <HoverBorderGradient>
-            Get My CV
-   </HoverBorderGradient>
+
+            <HoverBorderGradient>
+              Get My CV
+            </HoverBorderGradient>
           </a>
         </div>
 
         <div className=""></div>
 
         <div className="" data-aos="fade-up" data-aos-delay="1000">
-          {mounted && <DockDemo/>}
+          {mounted && <DockDemo />}
         </div>
-        
+
         {/* Floating Arrow */}
         <div
           data-aos="fade-up"

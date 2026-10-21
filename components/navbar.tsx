@@ -11,6 +11,7 @@ import { ScrollProgress } from './ui/scroll-progress';
 const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About' },
+  { href: '#company-projects', label: 'Work' },
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#skills', label: 'Skills' },

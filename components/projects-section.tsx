@@ -3,13 +3,22 @@
 import { motion } from 'framer-motion'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
-import { ExternalLink, Github } from 'lucide-react'
+import { ExternalLink, Github, ShieldCheck } from 'lucide-react'
 import Image from 'next/image'
 import { CardContainer, CardBody, CardItem } from './ui/3d-card'
 import { InteractiveGridPattern } from './ui/interactive-grid-pattern'
 import { cn } from '@/lib/utils'
 
-const projects = [
+type Project = {
+  title: string
+  description: string
+  image?: string
+  technologies: string[]
+  github?: string
+  demo?: string
+}
+
+const projects: Project[] = [
   {
     title: 'POS System',
     description:
@@ -54,12 +63,10 @@ const projects = [
     demo: 'https://www.gamlathecoholding.lk/',
   },
   {
-    title: 'Expense Tracker',
-    description: 'A learning project made to understand the concepts of Prisma.',
-    image: '/Expense Tracker.png',
-    technologies: ['React', 'Node.js', 'Prisma', 'pgSql'],
-    github: 'https://github.com',
-    demo: 'https://expense-tracker-mu-rust.vercel.app/',
+    title: 'Secure Proxy Tunnel',
+    description:
+      'Educational project: deployed an Xray proxy tunnel on a Linux VPS via the 3X-UI panel, with custom ports, client routing and SSL.',
+    technologies: ['Linux VPS', 'Xray', '3X-UI', 'SSL/TLS'],
   },
 ]
 
@@ -118,12 +125,18 @@ export function ProjectsSection() {
                       rotateZ={-10}
                       className="w-full relative h-48 rounded-xl overflow-hidden"
                     >
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover/card:scale-110 transition-transform duration-300"
-                      />
+                      {project.image ? (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover/card:scale-110 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-cyan-900">
+                          <ShieldCheck className="h-16 w-16 text-cyan-400 group-hover/card:scale-110 transition-transform duration-300" />
+                        </div>
+                      )}
                     </CardItem>
 
                     <CardItem
@@ -174,6 +187,7 @@ export function ProjectsSection() {
                       </CardItem>
                     )}
 
+                    {project.demo && (
                     <CardItem
                       translateZ={20}
                       as="a"
@@ -186,6 +200,7 @@ export function ProjectsSection() {
                         Demo
                       </Button>
                     </CardItem>
+                    )}
                   </div>
                 </CardBody>
               </CardContainer>

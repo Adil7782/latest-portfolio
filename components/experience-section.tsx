@@ -45,14 +45,14 @@ const experiences = [
 },
  {
   title: 'Student of SLIATE - HNDIT Programme',
-  company: 'SLIATE',
+  company: 'SLIATE - ATI Kurunegala',
   period: '2022 - 2024',
   description:
     'Completed the Higher National Diploma in Information Technology (HNDIT) with a strong academic performance and practical project experience.',
   achievements: [
     'Successfully completed the full HNDIT program.',
     'Completed the final viva examination.',
-    'Achieved a high GPA qualifying for First Class recognition.',
+    'Graduated with a GPA of 3.86, qualifying for First Class recognition.',
   ],
 }
 ,

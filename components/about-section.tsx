@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
-import { Code2, Briefcase, GraduationCap, Award } from 'lucide-react';
-import { Marquee3D,  } from './marqueeSection';
+import { Code2, Briefcase, GraduationCap, Award, AwardIcon } from 'lucide-react';
+import { Marquee3D, } from './marqueeSection';
 
 const highlights = [
   {
     icon: Code2,
-    title: '1+ Year Experience',
+    title: '2+ Year Experience',
     description: 'Building web applications with modern frameworks',
   },
   {
@@ -18,9 +18,14 @@ const highlights = [
     description: 'Delivered for clients',
   },
   {
-    icon: GraduationCap,
+    icon: AwardIcon,
     title: 'HNDIT',
     description: 'Higher National Diploma in Information Technology',
+  },
+  {
+    icon: GraduationCap,
+    title: 'BIT',
+    description: 'Bachelours in Information Technology University of Moratuwa',
   },
 
 ];
@@ -35,6 +40,10 @@ const skills = [
   'SQL',
   'Prisma',
   'AWS',
+  'VPS Hosting',
+  'React Native',
+  'Docker',
+  'C#',
 
   'Git',
 ];
@@ -77,7 +86,7 @@ export function AboutSection() {
                 love exploring new technologies to stay at the cutting edge of web development.
               </p>
               <p>
-                When I'm not coding, you can find me contributing to open-source projects, Creating content or 
+                When I'm not coding, you can find me contributing to open-source projects, Creating content or
                 trying something new.
               </p>
             </div>
@@ -136,7 +145,7 @@ export function AboutSection() {
         </motion.div>
       </div>
       <div className="">
-        <Marquee3D/>
+        <Marquee3D />
       </div>
     </section>
   );
