@@ -19,17 +19,19 @@ const RADIUS_V = (SCREEN_RADIUS / SCREEN_HEIGHT) * 100
 export interface IphoneProps extends HTMLAttributes<HTMLDivElement> {
   src?: string
   videoSrc?: string
+  children?: React.ReactNode
 }
 
 export function Iphone({
   src,
   videoSrc,
   className,
+  children,
   style,
   ...props
 }: IphoneProps) {
   const hasVideo = !!videoSrc
-  const hasMedia = hasVideo || !!src
+  const hasMedia = hasVideo || !!src || !!children
 
   return (
     <div
@@ -64,23 +66,38 @@ export function Iphone({
       )}
 
       {!hasVideo && src && (
-  <div
-    className="absolute inset-0 overflow-hidden pointer-events-none"
-    style={{
-      left: `${LEFT_PCT}%`,
-      top: `${TOP_PCT}%`,
-      width: `${WIDTH_PCT}%`,
-      height: `${HEIGHT_PCT}%`,
-      borderRadius: `${RADIUS_H}% / ${RADIUS_V}%`,
-    }}
-  >
-    <img
-      src={src}
-      alt=""
-      className="w-full h-full object-cover"
-    />
-  </div>
-)}
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          style={{
+            left: `${LEFT_PCT}%`,
+            top: `${TOP_PCT}%`,
+            width: `${WIDTH_PCT}%`,
+            height: `${HEIGHT_PCT}%`,
+            borderRadius: `${RADIUS_H}% / ${RADIUS_V}%`,
+          }}
+        >
+          <img
+            src={src}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      {!hasVideo && !src && children && (
+        <div
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            left: `${LEFT_PCT}%`,
+            top: `${TOP_PCT}%`,
+            width: `${WIDTH_PCT}%`,
+            height: `${HEIGHT_PCT}%`,
+            borderRadius: `${RADIUS_H}% / ${RADIUS_V}%`,
+          }}
+        >
+          {children}
+        </div>
+      )}
 
 
       <svg

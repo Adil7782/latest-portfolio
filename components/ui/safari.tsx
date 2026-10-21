@@ -20,6 +20,7 @@ export interface SafariProps extends HTMLAttributes<HTMLDivElement> {
   imageSrc?: string
   videoSrc?: string
   mode?: SafariMode
+  children?: React.ReactNode
 }
 
 export function Safari({
@@ -28,11 +29,12 @@ export function Safari({
   url,
   mode = "default",
   className,
+  children,
   style,
   ...props
 }: SafariProps) {
   const hasVideo = !!videoSrc
-  const hasMedia = hasVideo || !!imageSrc
+  const hasMedia = hasVideo || !!imageSrc || !!children
 
   return (
     <div
@@ -81,6 +83,21 @@ export function Safari({
             alt=""
             className="block size-full object-cover object-top"
           />
+        </div>
+      )}
+
+      {!hasVideo && !imageSrc && children && (
+        <div
+          className="absolute z-0 overflow-hidden"
+          style={{
+            left: `${LEFT_PCT}%`,
+            top: `${TOP_PCT}%`,
+            width: `${WIDTH_PCT}%`,
+            height: `${HEIGHT_PCT}%`,
+            borderRadius: "0 0 11px 11px",
+          }}
+        >
+          {children}
         </div>
       )}
 
