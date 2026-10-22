@@ -43,9 +43,7 @@ export const metadata: Metadata = {
     siteName: 'Adil Saaly Portfolio',
     images: [
       {
-        url: 'https://adil-saaly.vercel.app/logo.png', // Replace with your real OG image
-        width: 1200,
-        height: 630,
+        url: 'https://adil-saaly.vercel.app/adil-new.jpeg',
         alt: 'Adil Saaly Portfolio Preview',
       },
     ],
@@ -57,11 +55,21 @@ export const metadata: Metadata = {
     title: 'Adil Saaly | Full Stack Developer',
     description:
       'Building full-stack web applications using React, Next.js, and TypeScript. Explore my portfolio and projects.',
-    images: ['https://adil-saaly.vercel.app/og-image.jpg'],
+    images: ['https://adil-saaly.vercel.app/adil-new.jpeg'],
   },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   category: 'technology',
 };
@@ -87,7 +95,9 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Adil Saaly',
+              alternateName: ['Adil', 'Aadhi'],
               url: 'https://adil-saaly.vercel.app',
+              image: 'https://adil-saaly.vercel.app/adil-new.jpeg',
               sameAs: [
                 'https://github.com/Adil7782',
                 'https://www.linkedin.com/in/adil-saaly-dev',

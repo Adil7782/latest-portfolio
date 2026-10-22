@@ -57,14 +57,15 @@ export function EditorialHeroSection() {
       {/* ================================================================ */}
       <div className="relative flex-1 w-full max-w-7xl mx-auto flex items-center justify-center my-2 min-h-[520px] lg:min-h-[640px]">
         {/* --- LAYER 1 (z-10): GIANT NAME BEHIND IMAGE --- */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-between w-full pointer-events-none select-none px-2 sm:px-4">
-          <span className="font-black uppercase tracking-tighter text-gradient text-[20vw] sm:text-[18vw] lg:text-[15vw] leading-none drop-shadow-sm">
+        <h1 className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-between w-full pointer-events-none select-none px-2 sm:px-4">
+          <span className="sr-only">Adil Saaly – Full Stack Developer &amp; Software Engineer</span>
+          <span aria-hidden="true" className="font-black uppercase tracking-tighter text-gradient text-[18vw] sm:text-[14vw] lg:text-[12vw] leading-none drop-shadow-sm">
             ADIL
           </span>
-          <span className="font-black uppercase tracking-tighter text-gradient text-[20vw] sm:text-[18vw] lg:text-[15vw] leading-none drop-shadow-sm">
+          <span aria-hidden="true" className="font-black uppercase tracking-tighter text-gradient text-[18vw] sm:text-[14vw] lg:text-[12vw] leading-none drop-shadow-sm">
             SAALY
           </span>
-        </div>
+        </h1>
 
         {/* --- LAYER 2 (z-20): CUTOUT PERSON PNG IN FRONT OF TEXT WITH SCROLL ANIMATION --- */}
         <motion.div
@@ -82,7 +83,7 @@ export function EditorialHeroSection() {
                 setImageSrc(FALLBACK_IMAGE);
               }
             }}
-            alt="Adil Saaly"
+            alt="Adil Saaly, Full Stack Developer"
             className={cn(
               'h-full w-auto object-contain object-bottom filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)]',
               imageSrc === FALLBACK_IMAGE && 'rounded-2xl max-h-[460px] opacity-90'
