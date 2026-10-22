@@ -1,18 +1,15 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Badge } from './ui/badge'
-import { Button } from './ui/button'
-import { ExternalLink, Github, ShieldCheck } from 'lucide-react'
+import { useState, type MouseEvent } from 'react'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { ArrowUpRight, Lock } from 'lucide-react'
 import Image from 'next/image'
-import { CardContainer, CardBody, CardItem } from './ui/3d-card'
-import { InteractiveGridPattern } from './ui/interactive-grid-pattern'
 import { cn } from '@/lib/utils'
 
 type Project = {
   title: string
   description: string
-  image?: string
+  image: string
   technologies: string[]
   github?: string
   demo?: string
@@ -22,7 +19,6 @@ const projects: Project[] = [
   {
     title: 'Secure Proxy Tunnel',
     image: '/3x.png',
-
     description:
       'Educational project: deployed an Xray proxy tunnel on a Linux VPS via the 3X-UI panel, with custom ports, client routing and SSL.',
     technologies: ['Linux VPS', 'Xray', '3X-UI', 'SSL/TLS'],
@@ -70,146 +66,163 @@ const projects: Project[] = [
     technologies: ['Next.js', 'TypeScript', 'Resend mail', 'Tailwind CSS'],
     demo: 'https://www.gamlathecoholding.lk/',
   },
-
 ]
 
-export function ProjectsSection() {
-  return (
-    <section
-      id="projects"
-      className="relative min-h-screen py-20 overflow-hidden"
-    >
-      {/* --- Full-page background grid pattern --- */}
-      <div className="absolute inset-0 -z-10">
-        <InteractiveGridPattern
-          className={cn(
-            'w-full h-full opacity-60 skew-y-6'
-          )}
-        />
-      </div>
+// Floating preview size on desktop (px)
+const PREVIEW_W = 360
+const PREVIEW_H = 225
 
-      {/* --- Foreground content --- */}
-      <div className="container mx-auto px-4 relative z-10">
+const pad = (n: number) => String(n).padStart(2, '0')
+const hostOf = (url?: string) => (url ? new URL(url).hostname.replace(/^www\./, '') : null)
+
+export function ProjectsSection() {
+  const [active, setActive] = useState<number | null>(null)
+
+  // Motion values update the preview position without re-rendering React
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const springX = useSpring(x, { stiffness: 260, damping: 28, mass: 0.5 })
+  const springY = useSpring(y, { stiffness: 260, damping: 28, mass: 0.5 })
+
+  const handleMove = (e: MouseEvent<HTMLUListElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    x.set(e.clientX - rect.left - PREVIEW_W / 2)
+    y.set(e.clientY - rect.top - PREVIEW_H / 2)
+  }
+
+  return (
+    <section id="projects" className="relative isolate py-24 overflow-hidden">
+      {/* Backdrop: editorial column guides + grain */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 container mx-auto px-4">
+        <div className="h-full w-full bg-column-guides mask-fade-y border-x border-foreground/[0.06]" />
+      </div>
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-grain" />
+
+      <div className="container mx-auto px-4">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b border-foreground/80 pb-6"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              Projects
-            </span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A showcase of my recent work and side projects
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-3">
+              Index — side work &amp; client builds
+            </p>
+            <h2 className="font-black uppercase tracking-tighter leading-[0.85] text-5xl sm:text-6xl lg:text-8xl">
+              Featured
+              <br />
+              <span className="text-gradient">Projects</span>
+              <sup className="ml-2 align-top font-mono text-sm sm:text-base font-medium tracking-normal text-muted-foreground">
+                ({pad(projects.length)})
+              </sup>
+            </h2>
+          </div>
+          <p className="max-w-xs text-sm text-muted-foreground md:text-right">
+            A showcase of my recent work and side projects.
+            <span className="hidden lg:inline"> Hover a row to preview, click to open it live.</span>
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap -m-1">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="w-full md:w-1/2 lg:w-1/3 p-1"
+        {/* Index list */}
+        <ul
+          className="relative"
+          onMouseMove={handleMove}
+          onMouseLeave={() => setActive(null)}
+        >
+          {/* Cursor-following preview (desktop only) */}
+          <motion.div
+            aria-hidden
+            style={{ x: springX, y: springY, width: PREVIEW_W, height: PREVIEW_H }}
+            animate={{ opacity: active === null ? 0 : 1, scale: active === null ? 0.85 : 1 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="pointer-events-none absolute left-0 top-0 z-20 hidden lg:block overflow-hidden rounded-lg border border-border bg-card shadow-2xl"
+          >
+            {/* Filmstrip: every screenshot stacked, slid into view by index */}
+            <div
+              className="h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)]"
+              style={{ transform: `translateY(-${(active ?? 0) * 100}%)` }}
             >
-              <CardContainer className="inter-var w-full">
-                <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-cyan-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 border flex flex-col justify-between">
-                  {/* Top Content */}
-                  <div>
-                    <CardItem
-                      translateZ="100"
-                      rotateX={20}
-                      rotateZ={-10}
-                      className="w-full relative h-48 rounded-xl overflow-hidden"
-                    >
-                      {project.image ? (
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover group-hover/card:scale-110 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950 to-cyan-900">
-                          <ShieldCheck className="h-16 w-16 text-cyan-400 group-hover/card:scale-110 transition-transform duration-300" />
-                        </div>
-                      )}
-                    </CardItem>
+              {projects.map((p) => (
+                <div key={p.title} className="relative h-full w-full">
+                  <Image src={p.image} alt="" fill sizes={`${PREVIEW_W}px`} className="object-cover object-top" />
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-                    <CardItem
-                      translateZ="60"
-                      className="text-xl font-bold text-neutral-600 dark:text-white mt-4"
-                    >
-                      {project.title}
-                    </CardItem>
+          {projects.map((project, index) => {
+            const host = hostOf(project.demo)
+            const Row = project.demo ? 'a' : 'div'
+            return (
+              <motion.li
+                key={project.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true, amount: 0.3 }}
+                onMouseEnter={() => setActive(index)}
+                className="border-b border-border"
+              >
+                <Row
+                  {...(project.demo
+                    ? { href: project.demo, target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                  className="group relative grid grid-cols-12 items-center gap-x-4 gap-y-3 py-6 lg:py-8"
+                >
+                  {/* Hover wash */}
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 -z-10 origin-bottom scale-y-0 bg-foreground/[0.03] transition-transform duration-500 ease-out group-hover:scale-y-100"
+                  />
 
-                    <CardItem
-                      as="p"
-                      translateZ="40"
-                      className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                    >
-                      {project.description}
-                    </CardItem>
-
-                    {/* <CardItem
-                      translateZ="30"
-                      className="flex flex-wrap gap-2 mt-4"
-                    >
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </CardItem> */}
+                  {/* Mobile screenshot */}
+                  <div className="col-span-12 lg:hidden relative aspect-[16/10] overflow-hidden rounded-lg border border-border bg-card">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 0px"
+                      className="object-cover object-top"
+                    />
                   </div>
 
-                  {/* Buttons */}
-                  {/* <div className="flex justify-end items-center mt-4 gap-2">
-                    {project.github && (
-                      <CardItem
-                        translateZ={20}
-                        as="a"
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center gap-2"
-                        >
-                          <Github className="h-4 w-4" />
-                          Code
-                        </Button>
-                      </CardItem>
-                    )}
+                  <span className="col-span-2 lg:col-span-1 font-mono text-xs text-muted-foreground self-start lg:self-center pt-2 lg:pt-0">
+                    {pad(index + 1)}
+                  </span>
 
-                    {project.demo && (
-                      <CardItem
-                        translateZ={20}
-                        as="a"
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button size="sm" className="flex items-center gap-2">
-                          <ExternalLink className="h-4 w-4" />
-                          Demo
-                        </Button>
-                      </CardItem>
-                    )}
-                  </div> */}
-                </CardBody>
-              </CardContainer>
-            </motion.div>
-          ))}
-        </div>
+                  <h3 className="col-span-8 lg:col-span-5 text-2xl sm:text-3xl xl:text-5xl font-bold tracking-tight leading-tight transition-transform duration-500 ease-out lg:group-hover:translate-x-3">
+                    {project.title}
+                  </h3>
+
+                  <p className="col-span-12 lg:col-span-4 order-last lg:order-none text-sm text-muted-foreground lg:line-clamp-2 lg:pr-6">
+                    {project.description}
+                  </p>
+
+                  <div className="col-span-2 flex items-center justify-end gap-4 self-start lg:self-center">
+                    <span className="hidden xl:block font-mono text-[11px] text-muted-foreground truncate max-w-[140px]">
+                      {host ?? 'private build'}
+                    </span>
+                    <span
+                      className={cn(
+                        'flex h-10 w-10 lg:h-12 lg:w-12 shrink-0 items-center justify-center rounded-full border border-border transition-colors duration-300',
+                        project.demo && 'group-hover:border-foreground group-hover:bg-foreground group-hover:text-background'
+                      )}
+                    >
+                      {project.demo ? (
+                        <ArrowUpRight className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-300 group-hover:rotate-45" />
+                      ) : (
+                        <Lock className="h-4 w-4 text-muted-foreground" />
+                      )}
+                    </span>
+                  </div>
+                </Row>
+              </motion.li>
+            )
+          })}
+        </ul>
       </div>
     </section>
   )

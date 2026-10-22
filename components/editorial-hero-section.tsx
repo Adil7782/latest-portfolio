@@ -9,6 +9,7 @@ import {
 import { cn } from '@/lib/utils';
 import { DockDemo } from './mockDock';
 import { TypeAnimation } from 'react-type-animation';
+import { useLenis } from 'lenis/react';
 
 /*
  * =========================================================================
@@ -41,8 +42,13 @@ export function EditorialHeroSection() {
   const imageX = useTransform(smoothProgress, [0, 1], ['-60vw', '0vw']);
   const imageOpacity = useTransform(smoothProgress, [0, 0.3, 1], [0, 0.8, 1]);
 
+  const lenis = useLenis();
+
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById(id);
+    if (!target) return;
+    if (lenis) lenis.scrollTo(target, { offset: -80 });
+    else target.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

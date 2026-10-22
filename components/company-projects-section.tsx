@@ -37,6 +37,8 @@ type Accent = {
   bg: string;
   border: string;
   dot: string;
+  /** space-separated RGB, used for the stage spotlight */
+  glow: string;
 };
 
 type CompanyProject = {
@@ -89,6 +91,7 @@ const companyProjects: CompanyProject[] = [
       bg: 'bg-amber-500/10',
       border: 'border-amber-500/30',
       dot: 'bg-amber-500',
+      glow: '245 158 11',
     },
   },
   {
@@ -124,6 +127,7 @@ const companyProjects: CompanyProject[] = [
       bg: 'bg-violet-500/10',
       border: 'border-violet-500/30',
       dot: 'bg-violet-500',
+      glow: '139 92 246',
     },
   },
   {
@@ -162,6 +166,7 @@ const companyProjects: CompanyProject[] = [
       bg: 'bg-emerald-500/10',
       border: 'border-emerald-500/30',
       dot: 'bg-emerald-500',
+      glow: '16 185 129',
     },
   },
 ];
@@ -434,9 +439,25 @@ function ProjectDevicePanel({ project }: { project: CompanyProject }) {
   );
 }
 
+function CropMarks() {
+  const mark = 'absolute h-4 w-4 border-foreground/30';
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-3 sm:inset-4">
+      <span className={cn(mark, 'left-0 top-0 border-l border-t')} />
+      <span className={cn(mark, 'right-0 top-0 border-r border-t')} />
+      <span className={cn(mark, 'left-0 bottom-0 border-l border-b')} />
+      <span className={cn(mark, 'right-0 bottom-0 border-r border-b')} />
+    </div>
+  );
+}
+
 export function CompanyProjectsSection() {
   return (
-    <section id="company-projects" className="relative py-20 overflow-hidden">
+    <section id="company-projects" className="relative py-20 overflow-hidden isolate">
+      {/* Section backdrop: faded blueprint grid + grain */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-blueprint mask-fade-y opacity-60" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-grain" />
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -458,73 +479,102 @@ export function CompanyProjectsSection() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-16 max-w-6xl mx-auto">
-          {companyProjects.map((project, index) => (
-            <motion.article
-              key={project.slug}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="grid gap-8 lg:grid-cols-2 lg:items-center"
-            >
-              <div className={cn(index % 2 === 1 && 'lg:order-2')}>
-                <ProjectDevicePanel project={project} />
-              </div>
+        <div className="flex flex-col gap-10 lg:gap-14 max-w-6xl mx-auto">
+          {companyProjects.map((project, index) => {
+            const flipped = index % 2 === 1;
+            return (
+              <motion.article
+                key={project.slug}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true, amount: 0.15 }}
+                className="relative isolate overflow-hidden rounded-3xl border border-border/70 bg-card/40"
+              >
+                {/* Stage backdrop: fine grid that fades out from the device side */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -z-10 bg-blueprint"
+                  style={{
+                    maskImage: `radial-gradient(ellipse 70% 80% at ${flipped ? '80%' : '20%'} 55%, #000 20%, transparent 75%)`,
+                    WebkitMaskImage: `radial-gradient(ellipse 70% 80% at ${flipped ? '80%' : '20%'} 55%, #000 20%, transparent 75%)`,
+                  }}
+                />
+                {/* Oversized outlined case number */}
+                <span
+                  aria-hidden
+                  className={cn(
+                    'pointer-events-none absolute -z-10 -top-6 sm:-top-10 select-none font-black leading-none tracking-tighter text-outline text-[9rem] sm:text-[13rem] lg:text-[16rem]',
+                    flipped ? 'lg:left-4 right-4 lg:right-auto' : 'right-4'
+                  )}
+                >
+                  0{index + 1}
+                </span>
+                <CropMarks />
 
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <span
-                    className={cn(
-                      'text-gradient',
-                    )}
-                  >
-                    0{index + 1}
+                {/* Spec strip */}
+                <div className="flex items-center justify-between gap-4 border-b border-border/60 px-6 sm:px-10 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <span className={cn('h-1.5 w-1.5 rounded-full', project.accent.dot)} />
+                    Case 0{index + 1} / 0{companyProjects.length}
                   </span>
-                  <span className="text-gradient">
-                    {project.type}
-                  </span>
+                  <span className="hidden sm:inline">{project.url ? 'Live in production' : 'Deployed on-site'}</span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold mb-1">
-                  <HyperText className="text-6xl text-white-500" startOnView={true} delay={0.2}>
-                    {project.title}
+                <div className="grid grid-cols-1 gap-8 lg:gap-12 lg:grid-cols-2 lg:items-center p-6 sm:p-10">
+                  {/* Device: below the text on mobile, alternating sides on desktop */}
+                  <div className={cn('relative min-w-0 order-2', flipped ? 'lg:order-2' : 'lg:order-1')}>
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute -inset-10 -z-10"
+                      style={{
+                        background: `radial-gradient(closest-side, rgb(${project.accent.glow} / 0.3), transparent)`,
+                      }}
+                    />
+                    <ProjectDevicePanel project={project} />
+                  </div>
 
-                  </HyperText></h3>
-                <p className="flex items-center gap-1.5 text-sm text-muted-foreground mb-4">
-                  <Cpu className="h-3.5 w-3.5" />
-                  {project.stakeholders}
-                </p>
-                <p className="text-muted-foreground mb-5">{project.description}</p>
-
-                <ul className="space-y-3 mb-6">
-                  {project.contributions.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm">
-                      <span className={cn('mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full', project.accent.bg)}>
-                        <Check className={cn('h-3 w-3', project.accent.text)} />
-                      </span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-
-                      key={tag}
-                    // className={cn('  px-3 py-1 text-xs font-medium', project.accent.border, project.accent.bg)}
-                    >
-                      <HyperText className="text-lg text-gray-500" startOnView={true} delay={0.2}>
-                        {"-" + tag + "-"}
-
-                      </HyperText>
+                  <div className={cn('min-w-0 order-1', flipped ? 'lg:order-1' : 'lg:order-2')}>
+                    <span className="text-gradient text-sm font-medium mb-3 block">
+                      {project.type}
                     </span>
-                  ))}
+
+                    <h3 className="text-2xl md:text-3xl font-bold mb-1">
+                      <HyperText className="text-4xl sm:text-5xl lg:text-6xl text-white-500" startOnView={true} delay={0.2}>
+                        {project.title}
+                      </HyperText>
+                    </h3>
+                    <p className="flex items-center gap-1.5 text-sm text-muted-foreground mb-4">
+                      <Cpu className="h-3.5 w-3.5" />
+                      {project.stakeholders}
+                    </p>
+                    <p className="text-muted-foreground mb-5">{project.description}</p>
+
+                    <ul className="space-y-3 mb-6">
+                      {project.contributions.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm">
+                          <span className={cn('mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full', project.accent.bg)}>
+                            <Check className={cn('h-3 w-3', project.accent.text)} />
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span key={tag}>
+                          <HyperText className="text-lg text-gray-500" startOnView={true} delay={0.2}>
+                            {"-" + tag + "-"}
+                          </HyperText>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

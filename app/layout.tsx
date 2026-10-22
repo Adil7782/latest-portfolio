@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Analytics } from '@vercel/analytics/next';
+import { SmoothScroll } from '@/components/smooth-scroll';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -116,7 +117,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <SmoothScroll>{children}</SmoothScroll>
                <Analytics />
           <Toaster />
         </ThemeProvider>
